@@ -3,16 +3,12 @@ const db = require('./config/mongodb/index')
 const bodyParser = require('body-parser')
 require('dotenv').config();
 
-// Init application
 const app = express();
-// Connect db
 db.connect();
 
-// Set up
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Set up
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', "http://localhost:3000");
   res.setHeader(
