@@ -54,6 +54,7 @@ async function getAllProduct(req, res) {
 async function getProductById(req, res) {
     const id = req.params.id
     Product.findById(id)
+        .populate('supplyId')
         .then((product) => {
             return res.status(200).json({
                 message: "Chi tiết sản phẩm",
