@@ -8,7 +8,7 @@ db.connect();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/resources', express.static(__dirname + '/public'));
+app.use('/', express.static(__dirname + '/public'));
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', "http://localhost:3000");
@@ -22,7 +22,9 @@ app.use(function (req, res, next) {
 });
 
 const productRoute = require("./product/product.route")
-app.use("/api/product", productRoute);
+const supplyRoute = require("./supply/supply.route")
+app.use("/api/products", productRoute);
+app.use("/api/supplies", supplyRoute);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
