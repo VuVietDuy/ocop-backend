@@ -5,6 +5,7 @@ const { upload } = require("./product.middleware");
 
 router.get("/", productController.getAllProduct);
 router.get("/:id", productController.getProductById);
+router.delete("/:id", productController.deleteProductById);
 router.post("/", upload.fields([
     { name: 'sliderImg', maxCount: 1 },
     { name: 'thumbnail', maxCount: 1 },
