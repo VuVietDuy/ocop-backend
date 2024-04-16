@@ -2,7 +2,6 @@ const Supply = require("./supply.model");
 
 async function createNewSupply(req, res) {
     const newSupply = new Supply(req.body);
-    console.log(req.body);
     newSupply.save()
         .then((supply) => {
             return res.status(200).json({
