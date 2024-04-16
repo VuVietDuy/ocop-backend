@@ -31,19 +31,11 @@ async function createNewProduct(req, res) {
 
 async function getAllProduct(req, res) {
     Product.find()
+        .select('name rate thumbnail sliderImg')
         .then((products) => {
-            const listProduct = products.map((product, item) => {
-                return {
-                    _id: product._id,
-                    name: product.name,
-                    rate: product.rate,
-                    thumbnail: product.thumbnail,
-                    sliderImg: product.sliderImg,
-                }
-            })
             return res.status(200).json({
                 message: "Danh sách sản phẩm",
-                data: listProduct,
+                data: products,
             })
         })
         .catch((err) => {
@@ -54,7 +46,7 @@ async function getAllProduct(req, res) {
 async function getProductById(req, res) {
     const id = req.params.id
     Product.findById(id)
-        .populate('supplyId')
+        .populate({ path: 'supplyId', select: 'phone supplyLocation supplyAssociation -_id' })
         .then((product) => {
             return res.status(200).json({
                 message: "Chi tiết sản phẩm",
