@@ -1,8 +1,15 @@
 const Product = require("./product.model");
 
 async function createNewProduct(req, res) {
-    const newProduct = new Product(req.body);
+    var newProduct = new Product(req.body);
     const images = req.files;
+    // console.log(req);
+    if (!images.detailThumbnail) {
+        return res.status(400).json({
+            message: 'Vui lòng chọn ít nhất một tệp để tải lên.',
+            data: null,
+        });
+    }
     newProduct[images.thumbnail[0].fieldname] = "https://ocop-backend.vercel.app/" + images.thumbnail[0].filename;
     newProduct[images.detailThumbnail[0].fieldname] = "https://ocop-backend.vercel.app/" + images.detailThumbnail[0].filename;
     newProduct[images.sliderImg[0].fieldname] = "https://ocop-backend.vercel.app/" + images.sliderImg[0].filename;
@@ -15,7 +22,10 @@ async function createNewProduct(req, res) {
             })
         })
         .catch((err) => {
-            return res.status(500).json({ message: err, data: null })
+            return res.status(500).json({
+                message: err,
+                data: null,
+            })
         })
 }
 
