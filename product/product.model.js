@@ -6,6 +6,7 @@ const ProductSchema = mongoose.Schema({
   supplyId: { type: ObjectId, ref: "Supply", required: true },
   thumbnail: { type: String, required: true },
   sliderImg: { type: String, required: true },
+  sliderThumbnail: { type: String, required: true },
   detailThumbnail: { type: String, required: true },
   rate: { type: Number, required: true },
   client: { type: String, required: true },

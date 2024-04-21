@@ -10,9 +10,11 @@ async function createNewProduct(req, res) {
             data: null,
         });
     }
+
     newProduct[images.thumbnail[0].fieldname] = "https://ocop-backend.vercel.app/" + images.thumbnail[0].filename;
     newProduct[images.detailThumbnail[0].fieldname] = "https://ocop-backend.vercel.app/" + images.detailThumbnail[0].filename;
     newProduct[images.sliderImg[0].fieldname] = "https://ocop-backend.vercel.app/" + images.sliderImg[0].filename;
+    newProduct[images.sliderThumbnail[0].fieldname] = "https://ocop-backend.vercel.app/" + images.sliderThumbnail[0].filename;
     newProduct[images.qrCode[0].fieldname] = "https://ocop-backend.vercel.app/" + images.qrCode[0].filename;
     newProduct.save()
         .then((product) => {
