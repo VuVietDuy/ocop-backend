@@ -33,7 +33,7 @@ async function createNewProduct(req, res) {
 
 async function getAllProduct(req, res) {
     Product.find()
-        .select('name rate thumbnail sliderImg')
+        .select('name rate thumbnail sliderImg sliderThumbnail')
         .then((products) => {
             return res.status(200).json({
                 message: "Danh sách sản phẩm",
